@@ -76,15 +76,22 @@ jobs:
           asset_name: jekyll-docs-${{ inputs.version }}.tar
           asset_content_type: "application/gzip"
 
-      - name: artifact directory
-        working-directory: ./artifacts
-        run: ls -la
 
-      - name: artifact infrastructure directory
-        working-directory: ./artifacts/infrastructure-${{ inputs.version }}
-        run: ls -la
 
-        shell: bash
+
+      - name: "Upload app"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: "${{ steps.create_release.outputs.upload_url }}"
+          asset_path: ./artifacts/app-${{ inputs.version }}/app-${{ inputs.version }}.zip
+          asset_name: app-${{ inputs.version }}.zip
+          asset_content_type: "application/gzip"
+
+
+
+
       - name: "Upload infrastructure"
         uses: actions/upload-release-asset@v1
         env:
