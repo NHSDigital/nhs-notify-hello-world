@@ -45,6 +45,29 @@ jobs:
         with:
           version: "${{ inputs.version }}"
 
+  app:
+    name: "Build app"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.302
+      - name: publish
+        run: (cd ./src/helloworld && dotnet publish)
+      - name: Publish to zip # This would actually build your project, using zip for an example artifact
+        run: |
+          (cd ./src/helloworld/bin/Release/net8.0/publish && zip -r $OLDPWD/app-${{ inputs.version }}.zip .)
+      - name: list dir
+        run: ls -la
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: "app-${{ inputs.version }}.zip"
+          name: app-${{ inputs.version }}
+
   infrastructure:
     name: "Build terraform"
     runs-on: ubuntu-latest
