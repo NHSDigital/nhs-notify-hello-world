@@ -82,8 +82,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: "${{ steps.create_release.outputs.upload_url }}"
-          asset_path: ./artifacts/intrastructure-${{ inputs.version }}
-          asset_name: intrastructure-${{ inputs.version }}.tar
+          asset_path: ./artifacts/infrastructure-${{ inputs.version }}
+          asset_name: infrastructure-${{ inputs.version }}.tar
           asset_content_type: "application/gzip"
 
       # - name: "Upload other release asset 1"
