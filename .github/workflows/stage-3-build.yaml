@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: "."
-          name: infrastructure-${{ inputs.version }}.zip
+          name: infrastructure-${{ inputs.version }}
 
   artefact-1:
     name: "Artefact 1"

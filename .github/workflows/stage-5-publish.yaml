@@ -82,7 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: "${{ steps.create_release.outputs.upload_url }}"
-          asset_path: ./artifacts/infrastructure-${{ inputs.version }}.zip
+          asset_path: ./artifacts/infrastructure-${{ inputs.version }}/infrastructure-${{ inputs.version }}.zip
           asset_name: infrastructure-${{ inputs.version }}.zip
           asset_content_type: "application/gzip"
 
